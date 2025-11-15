@@ -1,0 +1,73 @@
+<%- layout("layouts/boilerplate")%>
+    
+<div class="row mt-2">
+    <div class="col-8 offset-2">
+        <h3>Edit your Listing</h3>
+
+    <form method="POST" enctype="multipart/form-data" action="/listings/<%=listing._id%>?_method=PUT" novalidate class="needs-validation" >
+        <div class="mb-2" >
+            <label for="title" class="form-label">Title</label>
+            <input name="listing[title]"  type="text" required class="form-control" value="<%=listing.title%>" >
+            <div class="valid-feedback">Title looks good.</div>
+        </div>
+
+        <div class="mb-2">
+            <label for="description"  class="form-label">Description</label>    
+            <textarea name="listing[description]"   required type="text" class="form-control" ><%=listing.description%></textarea>
+            <div class="invalid-feedback">Description is required</div>
+        </div>
+
+        <div class="row">
+
+            <div class="mb-2 col-md-4">
+            <label for="price"  class="form-label">Price</label>
+            <input name="listing[price]" required type="text" class="form-control" value="<%=listing.price%>">
+            <div class="invalid-feedback">Please enter valid price</div>
+            </div>
+        
+            <div class="mb-2 col-md-8">
+            <label for="country"  class="form-label">Country</label>
+            <input name="listing[country]" required type="text" class="form-control" onkeyup="this.value = this.value.toUpperCase();" value="<%=listing.country%>">
+            <div class="invalid-feedback">Country is required</div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+        <lable for="country" class="form-label">Choose a category for your listing</lable>
+        <select class="form-control form-select" name="listing[category]" aria-label="Default select example" placeholder="choose a category">
+            <option selected value="">Open this select menu</option>
+            <option value="Campings">Campings</option>
+            <option value="Castles">Castles</option>
+            <option value="Desert">Desert</option>
+            <option value="Pools">Pools</option>
+            <option value="Arctic">Arctic</option>
+            <option value="Rooms">Rooms</option>
+            <option value="Trending">Trending</option>
+            <option value="Iconic cities">Iconic cities</option>
+            <option value="Farms">Farms</option>
+            <option value="Mountains">Mountains</option>
+            <option value="Beach">Beach</option>
+        </select>
+        </div>
+
+        <div class="mb-2">
+                <h5>Original image preview</h5>
+                <img src="<%=originalimageUrl%>">
+        </div>
+        <div class="mb-2">
+                <label for="image"  class="form-label">Upload new Image <span style="color:red"> (Optional)</span></label>
+                <input name="listing[image]" placeholder="enter image URL/link" type="file" class="form-control">
+        </div>
+        
+        <div class="mb-2">
+            <label for="location"  class="form-label">Location</label>
+            <input name="listing[location]" required type="text" class="form-control" value="<%=listing.location %>">
+            <div class="invalid-feedback">How will a user find you ?</div>
+        </div>
+
+        <button class="btn btn-dark edit-btn mb-3">Save changes</button>
+    </form>
+</div>
+</div>
+
+
