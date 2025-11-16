@@ -1,42 +1,48 @@
 <%- layout("layouts/boilerplate")%>
 <body>
-    <div class="row offset-2 mt-1">
-        <h2><%=listing.title%></h2>
-        <div class="card listing-card mb-3 show-card " >
+    <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1 mt-3 px-3 px-md-0">
+        
+        <h2 class="mb-3"><%=listing.title%></h2>
+        
+        <div class="card listing-card show-card mb-3">
             <div class="row">
-                <div class="col-sm-10 col-md-6">
-                    <img src="<%=listing.image.url%>" class="img-fluid show-img" alt="listing_image">
-                </div>
-                <div class="col-sm-10 col-md-6 mt-3 card-body">
-                        <p class="card-text"><%=listing.description%></p>
-                        <p class="card-text">&#8377 <%=listing.price.toLocaleString("en-IN")%></p>
-                        <p class="card-text"><%=listing.location%></p>
-                        <p class="card-text "><%=listing.country.toUpperCase()%></p> 
-                        <p class="card-text"><small class="text-body-secondary">listed by ~<%=listing.owner["username"]%></small></p> 
-                        
-                        <%if(curruser && curruser._id.equals(listing.owner._id)){%>
-                            <div class="row  mt-4">
-                                <span class="col-sm-8 col-md-2 mb-sm-3">
+                
+
+                        <img src="<%=listing.image.url%>" 
+                             class="img-fluid rounded-start col-12 col-md-6 show-img" 
+                             alt="listing_image">
+                
+                <div class="col-12 col-md-6 card-body p-4 mt-3 mt-md-0 show-card">
+                    <p class="card-text"><%=listing.description%></p>
+                    <p class="card-text fs-5">&#8377 <%=listing.price.toLocaleString("en-IN")%></p>
+                    <p class="card-text"><%=listing.location%></p>
+                    <p class="card-text"><%=listing.country.toUpperCase()%></p> 
+                    <p class="card-text"><small class="text-body-secondary">listed by ~<%=listing.owner["username"]%></small></p> 
+                    
+                    <%if(curruser && curruser._id.equals(listing.owner._id)){%>
+                        <div class="row g-2 mt-4">
+                            <div class="col-6 col-md-auto">
                                 <form method="GET" action="/listings/<%=listing._id%>/edit">
-                                    <button class="edit-btn btn btn-secondary " >Edit</button>
+                                    <button class="btn btn-secondary w-100">Edit</button>
                                 </form>
-                                </span>
-                                <span class="col-sm-8 col-md-2">
-                                <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
-                                    <button class="Delete btn btn-dark ">Delete</button>
-                                </form>
-                                </span>
                             </div>
-                        <%}%>
-                       <%if(curruser){%>
-                        <div class="col-8 mb-2">
+                            <div class="col-6 col-md-auto">
+                                <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
+                                    <button class="btn btn-dark w-100">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    <%}%>
+                    
+                    <%if(curruser){%>
+                        <div class="col-12 col-md-10 mb-2 mt-4">
                             <hr/>
                             <h5>Leave a review</h5>
                             <form method="POST" action="/listings/<%=listing._id%>/reviews" novalidate class="needs-validation">
+                                
                                 <div class="mb-2">
-                                        <label for="rating" class="form-label">Rate <%=listing.title%> </label>
-                                        
-                                        <fieldset class="starability-slot">
+                                    <label for="rating" class="form-label">Rate <%=listing.title%></label>
+                                    <fieldset class="starability-slot">
                                         <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="3" checked aria-label="No rating." />
                                         <input type="radio" id="first-rate1" name="review[rating]" value="1" />
                                         <label for="first-rate1" title="Terrible">1 star</label>
@@ -48,50 +54,46 @@
                                         <label for="first-rate4" title="Very good">4 stars</label>
                                         <input type="radio" id="first-rate5" name="review[rating]" value="5" />
                                         <label for="first-rate5" title="Amazing">5 stars</label>
-                                        </fieldset>
+                                    </fieldset>
                                 </div>
                                 <div class="mb-2">
-                                    <label for="comment" class="form-label">Share your experience </label>
+                                    <label for="comment" class="form-label">Share your experience</label>
                                     <textarea cols="5" rows="2" id="comment" required class="form-control" name="review[comment]"></textarea>
                                 </div>
-                                <button class="btn btn-outline-danger" >Submit</button>
+                                <button class="btn btn-outline-danger">Submit</button>
                             </form>
                         </div>
-                        
-                        <%}%>
-
-
+                    <%}%>
                 </div>
             </div>
         </div>
 
         <%if(listing.reviews.length>0){%>
-        <div class="reviews">
+        <div class="reviews mt-5">
             <hr/>
             <h4>All reviews</h4>
-            <div class="row">
-            <%for(let review of listing.reviews){%>
-                <div class="card border-danger ms-3 col-md-5 mb-3" style="height:10rem; width: 15rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">@<%=review.author.username%></h5>
-                        <p class="starability-result card-text" data-rating="<%=review.rating%>"> </p> </br>
-                        <p class="card-text"><%=review.comment%></p>
-                        <form method="POST" action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE">
-                            <button class="btn btn-outline-dark mb-1">Delete</button>
-                        </form>
-                    </div>
-                </div>
-            <%}%>
+            <div class="row g-3">
+                <%for(let review of listing.reviews){%>
+                        <div class="col-12 col-md-6 col-lg-4 card h-200">
+                            <div class="card-body">
+                                <h5 class="card-title">@<%=review.author.username%></h5>
+                                <p class="starability-result card-text mb-6" data-rating="<%=review.rating%>"></p>                                
+                                <p class="card-text" style="margin-top:2rem;"><%=review.comment%></p>
+                                <form method="POST" action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE">
+                                    <button class="btn btn-sm btn-outline-dark mb-1">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                <%}%>
             </div>
         </div>
         <%}%>
 
-        <div class="mt-1">
+        <div class="mt-3">
             <h4>Where you'll be</h4>
-            <div id="map"></div>
+                <div id="map" class="h-100"></div>
         </div>
     </div>
 
-    <script src="/static/js/map.js"> 
-    </script>
+    <script src="/static/js/map.js"></script>
 </body>

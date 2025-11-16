@@ -23,6 +23,8 @@ const User=require("./models/user.js");
 
 
 const dburl=process.env.ATLAS_DB_URL;
+
+// const dburl="mongodb://127.0.0.1:27017/Tripix";
 main()
 .then(()=>{console.log("mongo connected successfully.")})
 .catch((e)=>{console.log("--ERROR--CONNECTING--MONGO--\n",e);});

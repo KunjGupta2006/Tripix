@@ -105,19 +105,20 @@ body {
 /* show page */
 
 .show-img {
-  height: 32rem;
-  width: 34rem;
+  max-height:40vh;
+  max-width:100%;
+  
   border-radius: 1rem !important;
   margin-bottom: 1rem !important;
 }
 .show-card {
   padding: 0.1rem;
+  max-width: 100%;
 }
 /* map */
 #map {
   min-height: 40vh;
   min-width: 20vw;
-  max-width: 40vw;
   border: solid 1px black;
   margin-bottom: 1rem;
 }
@@ -130,6 +131,7 @@ body {
   color: azure;
   border-radius: 1rem;
   padding: 0 1rem 0 1rem;
+  width:100%;
 }
 .btn-search:hover {
   background-color: #fe424d;
@@ -147,7 +149,6 @@ body {
 }
 .search-nav {
   height: 4rem;
-  width: 30vw;
   background-color: #f0f0f0 !important;
   opacity: 0.9;
   border-radius: 2rem;

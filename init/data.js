@@ -54,6 +54,32 @@ const sampleListings = [
     category:"Pools",
   },
   {
+    title: "Organic Farm Stay in Jaipur",
+    description:
+      "A peaceful farm stay promoting organic living. Get away from the city noise and enjoy fresh, home-cooked meals.",
+    image: {
+      filename: "listingimage",
+      url: "https://a0.muscache.com/im/pictures/miso/Hosting-46928652/original/6f204b4a-4156-44a5-9c0c-10e287c4fdd1.jpeg?im_w=720",
+    },
+    price: 3500,
+    location: "Jaipur",
+    country: "India",
+    category: "Farms",
+  },
+  {
+    title: "The Watchtower in Edinburgh",
+    description:
+      "Stay in a truly unique, historic tower in the heart of Edinburgh. A spiral staircase leads to stunning city views.",
+    image: {
+      filename: "listingimage",
+      url: "https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6ODM4NzA1ODQzMzU5MDY4MTU0/original/71f2fe63-3cf7-4213-9773-659a99e0dd9f.jpeg?im_w=720",
+    },
+    price: 4200,
+    location: "Edinburgh",
+    country: "United Kingdom",
+    category: "Castles",
+  },
+  {
     title: "Secluded Treehouse Getaway",
     description:
       "Live among the treetops in this unique treehouse retreat. A true nature lover's paradise.",
